@@ -89,6 +89,13 @@ app.put("/api/invitaciones/:id/confirmar", async (req, res) => {
   }
 });
 
+// 👉 Obtener TODAS las invitaciones
+app.get("/api/invitaciones", async (req, res) => {
+  const [rows] = await db.execute("SELECT * FROM invitacion ORDER BY id DESC");
+  res.json(rows);
+});
+
+
 // 🚀 Socket
 io.on("connection", socket => {
   console.log("🟢 Cliente conectado:", socket.id);
